@@ -1,0 +1,56 @@
+# Cursor IDE
+.cursor/
+.cursor-cache/
+.workspace/
+
+# System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Database
+*.sqlite
+*.db
+
+# Cache
+.cache/
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Debug files
+debug.log
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Local development
+local.properties 
