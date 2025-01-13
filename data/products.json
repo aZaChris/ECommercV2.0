@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Laptop XYZ",
+        "category": "hot-deals",
+        "price": 899.99,
+        "oldPrice": 999.99,
+        "discount": 10,
+        "image": "img/product01.png",
+        "rating": 4
+    },
+    {
+        "id": 2,
+        "name": "Smartphone ABC",
+        "category": "hot-deals",
+        "price": 499.99,
+        "oldPrice": 599.99,
+        "discount": 15,
+        "image": "img/product02.png",
+        "rating": 5
+    }
+]
