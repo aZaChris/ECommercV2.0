@@ -1,22 +1,102 @@
 [
     {
-        "id": 1,
-        "name": "Laptop XYZ",
-        "category": "hot-deals",
-        "price": 899.99,
-        "oldPrice": 999.99,
-        "discount": 10,
+        "id": "1",
+        "name": "MacBook Pro 2023",
+        "category": "laptops",
+        "searchTerms": ["macbook", "laptop", "apple", "computer"],
+        "price": 1299.99,
+        "oldPrice": 1499.99,
+        "discount": 13,
+        "description": "Latest MacBook Pro with M2 chip",
         "image": "img/product01.png",
-        "rating": 4
+        "rating": 5,
+        "stock": 10,
+        "isHotDeal": true,
+        "specifications": {
+            "processor": "M2 Pro",
+            "ram": "16GB",
+            "storage": "512GB SSD",
+            "display": "14-inch Retina"
+        }
     },
     {
-        "id": 2,
-        "name": "Smartphone ABC",
-        "category": "hot-deals",
-        "price": 499.99,
-        "oldPrice": 599.99,
-        "discount": 15,
+        "id": "2",
+        "name": "iPhone 14 Pro",
+        "category": "smartphones",
+        "searchTerms": ["iphone", "apple", "smartphone", "mobile"],
+        "price": 999.99,
+        "oldPrice": 1099.99,
+        "discount": 9,
+        "description": "iPhone 14 Pro with dynamic island",
         "image": "img/product02.png",
-        "rating": 5
+        "rating": 4.5,
+        "stock": 15,
+        "isHotDeal": true,
+        "specifications": {
+            "screen": "6.1-inch OLED",
+            "camera": "48MP",
+            "storage": "256GB",
+            "color": "Deep Purple"
+        }
+    },
+    {
+        "id": "3",
+        "name": "Sony WH-1000XM4",
+        "category": "accessories",
+        "searchTerms": ["cuffie", "headphones", "sony", "wireless"],
+        "price": 299.99,
+        "oldPrice": 349.99,
+        "discount": 14,
+        "description": "Premium noise-cancelling headphones",
+        "image": "img/product03.png",
+        "rating": 5,
+        "stock": 20,
+        "isHotDeal": true,
+        "specifications": {
+            "type": "Over-ear",
+            "battery": "30 hours",
+            "connectivity": "Bluetooth 5.0",
+            "color": "Black"
+        }
+    },
+    {
+        "id": "4",
+        "name": "Canon EOS R6",
+        "category": "cameras",
+        "searchTerms": ["camera", "canon", "mirrorless", "photo"],
+        "price": 2499.99,
+        "oldPrice": 2699.99,
+        "discount": 7,
+        "description": "Professional mirrorless camera",
+        "image": "img/product04.png",
+        "rating": 4.8,
+        "stock": 5,
+        "isHotDeal": false,
+        "specifications": {
+            "sensor": "20.1MP Full-Frame",
+            "video": "4K/60p",
+            "stabilization": "5-axis IBIS",
+            "autofocus": "Dual Pixel CMOS AF II"
+        }
+    },
+    {
+        "id": "5",
+        "name": "Samsung Galaxy Watch 5",
+        "category": "accessories",
+        "searchTerms": ["watch", "smartwatch", "samsung", "wearable"],
+        "price": 279.99,
+        "oldPrice": 329.99,
+        "discount": 15,
+        "description": "Advanced smartwatch with health features",
+        "image": "img/product05.png",
+        "rating": 4.3,
+        "stock": 12,
+        "isHotDeal": true,
+        "specifications": {
+            "display": "1.4-inch AMOLED",
+            "battery": "410mAh",
+            "sensors": "Heart rate, ECG, BIA",
+            "waterproof": "5ATM + IP68"
+        }
     }
 ]

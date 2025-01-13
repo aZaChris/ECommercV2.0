@@ -63,8 +63,8 @@
 						<!-- LOGO -->
 						<div class="col-md-3">
 							<div class="header-logo">
-								<a href="#" class="logo">
-									<img src="./img/logo.png" alt="">
+								<a href="index.html" class="logo">
+									<img src="./img/logo.png" alt="Electro">
 								</a>
 							</div>
 						</div>
@@ -73,14 +73,16 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
+								<form id="search-form">
 									<select class="input-select">
 										<option value="0">All Categories</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
+										<option value="laptops">Laptops</option>
+										<option value="smartphones">Smartphones</option>
+										<option value="cameras">Cameras</option>
+										<option value="accessories">Accessories</option>
 									</select>
-									<input class="input" placeholder="Search here">
-									<button class="search-btn">Search</button>
+									<input class="input" placeholder="Search here" id="search-input">
+									<button class="search-btn" type="submit">Search</button>
 								</form>
 							</div>
 						</div>
@@ -1089,6 +1091,7 @@
 		<script src="js/nouislider.min.js"></script>
 		<script src="js/jquery.zoom.min.js"></script>
 		<script src="js/main.js"></script>
+		<script src="js/search.js"></script>
 
 		<!-- Account Modal -->
 		<div id="account-modal" style="display: none;" class="account-modal">
