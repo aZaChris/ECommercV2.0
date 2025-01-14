@@ -193,82 +193,196 @@
 	}
 
 	// Chiama la funzione quando il documento è pronto
-	$(document).ready(function() {
-		detectUserCurrency();
-	});
+	$(document).ready(function () {
+    console.log("Document ready");
 
-	// Account Modal
-	$(document).ready(function() {
-		console.log('Document ready'); // Debug
+    // Verifica che l'elemento esista
+    var accountBtn = $("#account-btn");
+    console.log("Account button exists:", accountBtn.length);
 
-		// Click handler per il pulsante Account
-		$('#account-btn').on('click', function(e) {
-			e.preventDefault();
-			console.log('Account button clicked'); // Debug
-			$('#account-modal').show();
-		});
+    // Aggiungi l'evento click
+    accountBtn.click(function (e) {
+      e.preventDefault();
+      alert("Button clicked!"); // Test con un semplice alert
+    });
 
-		// Click handler per il pulsante Close
-		$('.close').on('click', function() {
-			$('#account-modal').hide();
-		});
+    // Debug
+    console.group("Auth Modal Debug");
+    console.log("Modal element:", $("#auth-modal"));
+    console.log("Account button:", $("#account-btn"));
+    console.log("Modal display:", $("#auth-modal").css("display"));
+    console.groupEnd();
 
-		// Click handler per chiudere il modal cliccando fuori
-		$(window).on('click', function(e) {
-			if ($(e.target).is('#account-modal')) {
-				$('#account-modal').hide();
-			}
-		});
+    // Products Slick
+    $(".products-slick").each(function () {
+      var $this = $(this),
+        $nav = $this.attr("data-nav");
 
-		// Tab switching
-		$('.tab-btn').on('click', function() {
-			$('.tab-btn').removeClass('active');
-			$('.tab-content').removeClass('active');
-			
-			$(this).addClass('active');
-			$(`#${$(this).data('tab')}-form`).addClass('active');
-		});
+      $this.slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        infinite: true,
+        speed: 300,
+        dots: false,
+        arrows: true,
+        appendArrows: $nav ? $nav : false,
+        responsive: [
+          {
+            breakpoint: 991,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      });
+    });
 
-		// Form submissions
-		$('#login-form-element').on('submit', function(e) {
-			e.preventDefault();
-			console.log('Login submitted');
-			// Implementare la logica di login
-		});
+    // Products Widget Slick
+    $(".products-widget-slick").each(function () {
+      var $this = $(this),
+        $nav = $this.attr("data-nav");
 
-		$('#signup-form-element').on('submit', function(e) {
-			e.preventDefault();
-			console.log('Signup submitted');
-			// Implementare la logica di signup
-		});
-	});
+      $this.slick({
+        infinite: true,
+        autoplay: true,
+        speed: 300,
+        dots: false,
+        arrows: true,
+        appendArrows: $nav ? $nav : false,
+      });
+    });
 
-	$(document).ready(function() {
-		// Semplice toggle del modal
-		$("#account-btn").click(function(e) {
-			e.preventDefault();
-			$("#account-modal").show();
-		});
+    // Product Main img Slick
+    $("#product-main-img").slick({
+      infinite: true,
+      speed: 300,
+      dots: false,
+      arrows: true,
+      fade: true,
+      asNavFor: "#product-imgs",
+    });
 
-		// Chiudi il modal con il pulsante X
-		$(".close").click(function() {
-			$("#account-modal").hide();
-		});
+    // Product imgs Slick
+    $("#product-imgs").slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      arrows: true,
+      centerMode: true,
+      focusOnSelect: true,
+      centerPadding: 0,
+      vertical: true,
+      asNavFor: "#product-main-img",
+      responsive: [
+        {
+          breakpoint: 991,
+          settings: {
+            vertical: false,
+            arrows: false,
+            dots: true,
+          },
+        },
+      ],
+    });
 
-		// Chiudi il modal cliccando fuori
-		$(window).click(function(e) {
-			if ($(e.target).is("#account-modal")) {
-				$("#account-modal").hide();
-			}
-		});
+    // Price Slider
+    if ($("#price-slider").length > 0) {
+      var slider = $("#price-slider")[0];
+      noUiSlider.create(slider, {
+        start: [1, 999],
+        connect: true,
+        step: 1,
+        range: {
+          min: 1,
+          max: 999,
+        },
+      });
+    }
 
-		// Switch tra login e signup
-		$(".tab-btn").click(function() {
-			$(".tab-btn").removeClass("active");
-			$(".tab-content").removeClass("active");
-			$(this).addClass("active");
-			$("#" + $(this).data("tab") + "-form").addClass("active");
-		});
-	});
+    // Auth Modal
+    const modal = $("#auth-modal");
+    const closeBtn = $(".close-auth");
+    const authTabs = $(".auth-tab");
+    const loginForm = $("#login-form");
+    const signupForm = $("#signup-form");
 
+    $("#account-btn").on("click", function (e) {
+      e.preventDefault();
+      console.log("Account button clicked");
+      modal.fadeIn();
+    });
+
+    closeBtn.on("click", function () {
+      modal.fadeOut();
+    });
+
+    $(window).on("click", function (e) {
+      if ($(e.target).is(modal)) {
+        modal.fadeOut();
+      }
+    });
+
+    authTabs.on("click", function () {
+      authTabs.removeClass("active");
+      $(this).addClass("active");
+
+      if ($(this).data("tab") === "login") {
+        signupForm.hide();
+        loginForm.show();
+      } else {
+        loginForm.hide();
+        signupForm.show();
+      }
+    });
+
+    loginForm.on("submit", function (e) {
+      e.preventDefault();
+      const email = $(this).find('input[type="email"]').val();
+      const password = $(this).find('input[type="password"]').val();
+      console.log("Login attempt:", { email, password });
+      alert("Login successful!");
+      modal.fadeOut();
+    });
+
+    signupForm.on("submit", function (e) {
+      e.preventDefault();
+      const name = $(this).find('input[type="text"]').val();
+      const email = $(this).find('input[type="email"]').val();
+      const password = $(this).find('input[type="password"]').eq(0).val();
+      const confirmPassword = $(this)
+        .find('input[type="password"]')
+        .eq(1)
+        .val();
+
+      if (password !== confirmPassword) {
+        alert("Passwords don't match!");
+        return;
+      }
+
+      console.log("Signup attempt:", { name, email, password });
+      alert("Signup successful!");
+      modal.fadeOut();
+    });
+
+    // Test click programmatico
+    setTimeout(() => {
+      console.log("Triggering click on account button...");
+      $("#account-btn").trigger("click");
+    }, 2000);
+
+    // Test semplice del modal
+    $("#account-btn").on("click", function (e) {
+      e.preventDefault();
+      console.log("Button clicked");
+      $("#auth-modal").show();
+    });
+  });
 })(jQuery);

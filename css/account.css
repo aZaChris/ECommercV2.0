@@ -1,0 +1,164 @@
+/* Modal Structure */
+#simple-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 400px;
+}
+
+/* Header */
+.modal-header {
+    background: #15161D;
+    padding: 15px;
+    border-radius: 5px 5px 0 0;
+    position: relative;
+    border-bottom: 3px solid #D10024;
+}
+
+.modal-logo {
+    color: #FFF;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 0px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+.modal-logo .dot {
+    color: #D10024;
+    font-size: 35px;
+    margin-left: 2px;
+    position: relative;
+    top: -2px;
+}
+
+.close-modal {
+    cursor: pointer;
+    font-size: 24px;
+    color: #FFF;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Content */
+.modal-content {
+    padding: 30px;
+    background: white;
+}
+
+/* Tabs - Stile navbar principale con animazione cursore */
+.modal-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    background: #FFF;
+    border-bottom: 2px solid #E4E7ED;
+    padding: 0;
+    position: relative;
+}
+
+/* Cursore animato */
+.modal-tabs::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: 50%;
+    height: 2px;
+    background: #D10024;
+    transform: translateX(0%);
+    transition: 0.3s transform;
+}
+
+/* Sposta il cursore quando signup è attivo */
+.modal-tabs.signup-active::before {
+    transform: translateX(100%);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 15px 0;
+    border: none;
+    background: none;
+    color: #2B2D42;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+.tab-btn:hover,
+.tab-btn.active-tab {
+    color: #D10024;
+}
+
+/* Rimuoviamo il vecchio after poiché ora usiamo il cursore animato */
+.tab-btn::after {
+    display: none;
+}
+
+/* Forms */
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #E4E7ED;
+    border-radius: 3px;
+}
+
+.form-button {
+    width: 100%;
+    padding: 12px;
+    background: #D10024;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+.form-button:hover {
+    background: #E4E7ED;
+    color: #D10024;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.forgot-password a {
+    color: #D10024;
+    text-decoration: none;
+}
+
+/* Overlay */
+#modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}

@@ -24,9 +24,7 @@
 
         <!-- Custom stlylesheet -->
         <link type="text/css" rel="stylesheet" href="css/style.css"/>
-
-        <!-- Hot Deals stylesheet -->
-        <link type="text/css" rel="stylesheet" href="css/hot-deals-page.css"/>
+        <link type="text/css" rel="stylesheet" href="css/hot-deals.css" />
     </head>
     <body>
         <!-- HEADER -->
@@ -145,22 +143,28 @@
         <!-- /HEADER -->
 
         <!-- NAVIGATION -->
-        <!-- ... (stessa navigation di index.html) ... -->
-
-        <!-- BREADCRUMB -->
-        <div id="breadcrumb" class="section">
+        <nav id="navigation">
+            <!-- container -->
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="breadcrumb-header">Hot Deals</h3>
-                        <ul class="breadcrumb-tree">
-                            <li><a href="index.html">Home</a></li>
-                            <li class="active">Hot Deals</li>
+                <!-- responsive-nav -->
+                <div id="responsive-nav">
+                    <!-- NAV -->
+                    <ul class="main-nav nav navbar-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active"><a href="hot-deals.html">Hot Deals</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="laptops.html">Laptops</a></li>
+                        <li><a href="smartphones.html">Smartphones</a></li>
+                        <li><a href="cameras.html">Cameras</a></li>
+                        <li><a href="accessories.html">Accessories</a></li>
                         </ul>
-                    </div>
+                    <!-- /NAV -->
                 </div>
+                <!-- /responsive-nav -->
             </div>
-        </div>
+            <!-- /container -->
+            </nav>
+            <!-- /NAVIGATION -->
 
         <!-- SECTION -->
         <div class="section">
@@ -168,52 +172,18 @@
             <div class="container">
                 <!-- row -->
                 <div class="row">
-                    <!-- STORE -->
-                    <div id="store" class="col-md-12">
-                        <!-- store products -->
-                        <div class="row" id="products-container">
-                            <!-- product -->
-                            <div class="col-md-4 col-xs-6">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="./img/product01.png" alt="">
-                                        <div class="product-label">
-                                            <span class="sale">-30%</span>
-                                            <span class="new">NEW</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Category</p>
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /product -->
+                    <div id="hot-deals-results" class="col-md-12">
+                        <h2 class="title">Hot Deals</h2>
+                        <div id="products-container" class="row">
+                            <!-- Products will be loaded here -->
                         </div>
-                        <!-- /store products -->
                     </div>
-                    <!-- /STORE -->
                 </div>
                 <!-- /row -->
             </div>
             <!-- /container -->
         </div>
+        <!-- /SECTION -->
 
         <!-- NEWSLETTER -->
         <div id="newsletter" class="section">
@@ -352,6 +322,7 @@
         <script src="js/nouislider.min.js"></script>
         <script src="js/jquery.zoom.min.js"></script>
         <script src="js/main.js"></script>
-        <script src="js/category.js"></script>
+        <script src="js/search.js"></script>
+        <script src="js/hot-deals.js"></script>
     </body>
 </html>

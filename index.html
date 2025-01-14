@@ -34,6 +34,9 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+		<link type="text/css" rel="stylesheet" href="css/auth.css" />
+		<link type="text/css" rel="stylesheet" href="css/account.css" />
+
     </head>
 	<body>
 		<!-- HEADER -->
@@ -48,7 +51,7 @@
 					</ul>
 					<ul class="header-links pull-right">
 						<li><a href="#" id="currency-display"><i class="fa fa-euro"></i> EUR</a></li>
-						<li><a href="#" id="account-btn"><i class="fa fa-user-o"></i> My Account</a></li>
+						<li><a href="javascript:void(0)" id="account-btn"><i class="fa fa-user-o"></i> My Account</a></li>
 					</ul>
 				</div>
 			</div>
@@ -1084,52 +1087,23 @@
 		</footer>
 		<!-- /FOOTER -->
 
+		<!-- Simple Auth Modal -->
+		<div id="auth-modal"
+			style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid black; z-index: 1000;">
+			<h3>Login/Register</h3>
+			<button onclick="document.getElementById('auth-modal').style.display='none'">Close</button>
+		</div>
+
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>
+		<script src="js/account.js"></script>
+		<script src="js/auth.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/slick.min.js"></script>
 		<script src="js/nouislider.min.js"></script>
 		<script src="js/jquery.zoom.min.js"></script>
 		<script src="js/main.js"></script>
 		<script src="js/search.js"></script>
-
-		<!-- Account Modal -->
-		<div id="account-modal" style="display: none;" class="account-modal">
-			<div class="account-modal-content">
-				<span class="close">&times;</span>
-				<div class="account-tabs">
-					<button class="tab-btn active" data-tab="login">Login</button>
-					<button class="tab-btn" data-tab="signup">Sign Up</button>
-				</div>
-				
-				<div id="login-form" class="tab-content active">
-					<form id="login-form-element">
-						<div class="form-group">
-							<input type="email" class="input" placeholder="Email" required>
-						</div>
-						<div class="form-group">
-							<input type="password" class="input" placeholder="Password" required>
-						</div>
-						<button type="submit" class="primary-btn">Login</button>
-					</form>
-				</div>
-
-				<div id="signup-form" class="tab-content">
-					<form id="signup-form-element">
-						<div class="form-group">
-							<input type="email" class="input" placeholder="Email" required>
-						</div>
-						<div class="form-group">
-							<input type="password" class="input" placeholder="Password" required>
-						</div>
-						<div class="form-group">
-							<input type="password" class="input" placeholder="Confirm Password" required>
-						</div>
-						<button type="submit" class="primary-btn">Sign Up</button>
-					</form>
-				</div>
-			</div>
-		</div>
 
 	</body>
 </html>

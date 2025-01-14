@@ -1,0 +1,27 @@
+/* Smartphones Styles */
+#smartphones-results {
+    margin-bottom: 30px;
+}
+
+.category-title {
+    margin-bottom: 30px;
+    color: #2B2D42;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+#products-container .product {
+    position: relative;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 0px 0px 0px 0px #E4E7ED, 0px 0px 0px 1px #E4E7ED;
+    box-shadow: 0px 0px 0px 0px #E4E7ED, 0px 0px 0px 1px #E4E7ED;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+#products-container .product:hover {
+    -webkit-box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #D10024;
+    box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #D10024;
+}
+
+/* ... (resto degli stili come in categories.css) ... */

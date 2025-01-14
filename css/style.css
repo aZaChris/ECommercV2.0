@@ -2255,3 +2255,7 @@ textarea.input {
     border: 1px solid #E4E7ED;
 }
 
+/* Rimuovi l'immagine di caricamento dello slider */
+.slick-loading .slick-list {
+  background: #fff;
+}
