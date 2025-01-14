@@ -1,124 +1,72 @@
-console.log("Auth.js loaded");
+const { Pool } = require("pg");
 
-class Auth {
-  constructor() {
-    this.initLocalStorage();
-    this.setupEventListeners();
-  }
-
-  // Inizializza localStorage se non esiste
-  initLocalStorage() {
-    if (!localStorage.getItem("users")) {
-      localStorage.setItem("users", JSON.stringify([]));
-    }
-  }
-
-  setupEventListeners() {
-    // Login form submission
-    $("#login-form").on("submit", (e) => {
-      e.preventDefault();
-      this.handleLogin();
-    });
-
-    // Signup form submission
-    $("#signup-form").on("submit", (e) => {
-      e.preventDefault();
-      this.handleSignup();
-    });
-  }
-
-  // Validazione email
-  isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
-
-  // Gestione Login
-  handleLogin() {
-    const email = $("#login-form input[type='email']").val();
-    const password = $("#login-form input[type='password']").val();
-
-    // Validazione campi
-    if (!email || !password) {
-      alert("Please fill in all fields");
-      return;
-    }
-
-    if (!this.isValidEmail(email)) {
-      alert("Please enter a valid email");
-      return;
-    }
-
-    // Verifica credenziali nel localStorage
-    const users = JSON.parse(localStorage.getItem("users"));
-    const user = users.find(
-      (u) => u.email === email && u.password === password
-    );
-
-    if (user) {
-      alert(`Welcome back, ${user.fullName}!`);
-      $("#simple-modal, #modal-overlay").fadeOut();
-      // Qui puoi aggiungere la logica per gestire la sessione utente
-    } else {
-      alert("Invalid email or password");
-    }
-  }
-
-  // Gestione Signup
-  handleSignup() {
-    const fullName = $("#signup-form input[type='text']").val();
-    const email = $("#signup-form input[type='email']").val();
-    const password = $("#signup-form input[type='password']").eq(0).val();
-    const confirmPassword = $("#signup-form input[type='password']")
-      .eq(1)
-      .val();
-
-    // Validazione
-    if (!fullName || !email || !password || !confirmPassword) {
-      alert("Please fill in all fields");
-      return;
-    }
-
-    if (!this.isValidEmail(email)) {
-      alert("Please enter a valid email");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      alert("Passwords don't match");
-      return;
-    }
-
-    if (password.length < 6) {
-      alert("Password must be at least 6 characters long");
-      return;
-    }
-
-    // Verifica email duplicata nel localStorage
-    const users = JSON.parse(localStorage.getItem("users"));
-    if (users.some((u) => u.email === email)) {
-      alert("This email is already registered");
-      return;
-    }
-
-    // Crea nuovo utente
-    const newUser = {
-      fullName: fullName,
-      email: email,
-      password: password,
-      registeredAt: new Date().toISOString(),
-    };
-
-    // Aggiungi alla lista e salva nel localStorage
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
-
-    alert("Registration successful! Please login");
-    $("#signup-form")[0].reset();
-    $("#login-tab").click();
-  }
-}
-
-// Inizializza l'auth quando il documento è pronto
-$(document).ready(() => {
-  new Auth();
+// Configurazione del database
+const pool = new Pool({
+  user: "postgres",
+  host: "localhost",
+  database: "nome_tuo_database",
+  password: "tua_password",
+  port: 5432,
 });
+
+// Prima devi creare la tabella users (esegui questo SQL una volta sola)
+const createTableQuery = `
+  CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+`;
+
+// Inizializza la tabella
+pool
+  .query(createTableQuery)
+  .catch((err) => console.error("Errore creazione tabella:", err));
+
+const auth = {
+  // Registrazione nuovo utente
+  signup: async (username, password) => {
+    try {
+      const checkUser = await pool.query(
+        "SELECT * FROM users WHERE username = $1",
+        [username]
+      );
+
+      if (checkUser.rows.length > 0) {
+        return { success: false, message: "Username già esistente" };
+      }
+
+      await pool.query(
+        "INSERT INTO users (username, password) VALUES ($1, $2)",
+        [username, password]
+      );
+
+      return { success: true, message: "Registrazione completata" };
+    } catch (error) {
+      console.error("Errore durante la registrazione:", error);
+      return { success: false, message: "Errore durante la registrazione" };
+    }
+  },
+
+  // Login utente
+  login: async (username, password) => {
+    try {
+      const result = await pool.query(
+        "SELECT * FROM users WHERE username = $1 AND password = $2",
+        [username, password]
+      );
+
+      if (result.rows.length > 0) {
+        return { success: true, message: "Login effettuato con successo" };
+      } else {
+        return { success: false, message: "Credenziali non valide" };
+      }
+    } catch (error) {
+      console.error("Errore durante il login:", error);
+      return { success: false, message: "Errore durante il login" };
+    }
+  },
+};
+
+module.exports = auth;

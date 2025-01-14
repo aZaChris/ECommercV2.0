@@ -386,3 +386,7 @@
     });
   });
 })(jQuery);
+// ... existing code ...
+const authRoutes = require('./routes/auth');
+app.use('/auth', authRoutes);
+// ... existing code ...
